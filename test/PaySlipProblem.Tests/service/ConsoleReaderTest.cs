@@ -46,7 +46,7 @@ namespace PaySlipProblem.Tests.service
         }
 
         [Fact]
-        public void ReadStringShouldThrowExceptionWhenUserTryToQuite()
+        public void ReadStringShouldThrowExceptionWhenUserTryToQuit()
         {
             // given
             _consoleUtils.Setup(c => c.Read()).Returns("quit");
@@ -57,6 +57,37 @@ namespace PaySlipProblem.Tests.service
                 // when
                 () => _subject.ReadString("name")
             );
+        }
+
+        [Fact]
+        public void ReadIntShouldThrowExceptionWhenUserTryToQuit()
+        {
+            // given
+            _consoleUtils.Setup(c => c.Read()).Returns("quit");
+            
+            // then
+            Assert.Throws<QuitApplicationException>(
+                // when
+                () => _subject.ReadInt("name")
+            );
+        }
+
+        [Fact]
+        public void ReadIntShouldKeepAskingUserIfInputIsNotInteger()
+        {
+            // given
+            _consoleUtils.SetupSequence(c => c.Read())
+                .Returns("  ")
+                .Returns("")
+                .Returns("James")
+                .Returns("12.5")
+                .Returns("50000");
+            
+            // when
+            var value = _subject.ReadInt("annualSalary");
+            
+            // then
+            Assert.Equal(50000, value);
         }
     }
 }

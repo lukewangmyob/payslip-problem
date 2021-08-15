@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using payslip_problem_luke.util;
 
 namespace PaySlipProblem.service
@@ -17,26 +18,45 @@ namespace PaySlipProblem.service
 
         public string ReadString(string fieldName)
         {
-            var isValid = false;
-            var userInput = "";
-            
-            while (!isValid)
+            return (string) Read("string", fieldName);
+        }
+
+        public int ReadInt(string fieldName)
+        {
+            return (int) Read("int", fieldName);
+        }
+
+        private object Read(string type, string fieldName)
+        {
+            while (true)
             {
                 _consoleUtils.Write($"{UserInputPrefix} {fieldName}");
-                userInput = _consoleUtils.Read();
+                var userInput = _consoleUtils.Read();
+                
                 if (userInput == QuitFlag)
                 {
                     throw new QuitApplicationException("User chose to quit");
                 }
-            
-                if (!string.IsNullOrWhiteSpace(userInput))
+
+                try
+                {
+                    switch (type)
+                    {
+                        case "int":
+                        {
+                            return int.Parse(userInput);
+                        }
+                        case "string" when string.IsNullOrWhiteSpace(userInput):
+                            throw new InvalidDataException();
+                        case "string":
+                            return userInput;
+                    }
+                }
+                catch (Exception e)
                 {
                     _consoleUtils.Write(InvalidInputErrorMessage);
-                    isValid = true;
                 }
             }
-            
-            return userInput;
         }
     }
     
