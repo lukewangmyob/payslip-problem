@@ -4,12 +4,12 @@ namespace payslip_problem_luke.model
 {
     public class EmployeeDetails
     {
-        public string FirstName { get; }
-        public string LastName { get; }
-        public int AnnualSalary { get; }
-        public double SuperRate { get; }
-        public DateTime StartDate { get; }
-        public DateTime EndDate { get; }
+        private string FirstName { get; }
+        private string LastName { get; }
+        private int AnnualSalary { get; }
+        private double SuperRate { get; }
+        private DateTime StartDate { get; }
+        private DateTime EndDate { get; }
 
         public EmployeeDetails(string firstName, string lastName, int annualSalary, double superRate, DateTime startDate, DateTime endDate)
         {
