@@ -1,4 +1,4 @@
-using payslip_problem_luke.model;
+using PaySlipProblem.model;
 
 namespace PaySlipProblem.service
 {

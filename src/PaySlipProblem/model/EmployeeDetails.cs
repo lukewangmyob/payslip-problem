@@ -1,6 +1,6 @@
 using System;
 
-namespace payslip_problem_luke.model
+namespace PaySlipProblem.model
 {
     public class EmployeeDetails
     {

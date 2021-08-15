@@ -1,7 +1,7 @@
 using System;
 using Moq;
-using payslip_problem_luke.util;
 using PaySlipProblem.service;
+using PaySlipProblem.util;
 using Xunit;
 
 namespace PaySlipProblem.Tests.service

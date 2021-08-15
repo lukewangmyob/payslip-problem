@@ -41,7 +41,7 @@ namespace PaySlipProblem.model
             return HashCode.Combine(Name, StartDate, EndDate, GrossIncome, IncomeTax, NetIncome, Super);
         }
 
-        public string output()
+        public string Output()
         {
             return $"Name: {Name}\nPay Period: {StartDate:dd MMMM} - {EndDate:dd MMMM}\nGross Income: {GrossIncome}\nIncome Tax: {IncomeTax}\nNet Income:{NetIncome}\nSuper: {Super}";
         }

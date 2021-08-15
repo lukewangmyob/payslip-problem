@@ -1,6 +1,6 @@
 using System;
 
-namespace payslip_problem_luke.util
+namespace PaySlipProblem.util
 {
     public class ConsoleUtils
     {

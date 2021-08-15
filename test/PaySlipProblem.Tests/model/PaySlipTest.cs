@@ -1,7 +1,5 @@
 using System;
-using payslip_problem_luke.model;
 using PaySlipProblem.model;
-using PaySlipProblem.service;
 using Xunit;
 
 namespace PaySlipProblem.Tests.model
@@ -26,7 +24,7 @@ namespace PaySlipProblem.Tests.model
                 "Name: John Doe\nPay Period: 01 March - 31 March\nGross Income: 5004\nIncome Tax: 922\nNet Income:4082\nSuper: 450";
             
             // when
-            var paySlipOutput = paySlip.output();
+            var paySlipOutput = paySlip.Output();
         
             // then
             Assert.Equal(expectedPaySlipOutput, paySlipOutput);

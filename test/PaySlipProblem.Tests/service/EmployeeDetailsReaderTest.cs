@@ -1,6 +1,6 @@
 using System;
 using Moq;
-using payslip_problem_luke.model;
+using PaySlipProblem.model;
 using PaySlipProblem.service;
 using Xunit;
 

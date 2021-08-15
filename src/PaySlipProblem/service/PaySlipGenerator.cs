@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using payslip_problem_luke.model;
 using PaySlipProblem.model;
 
 namespace PaySlipProblem.service
