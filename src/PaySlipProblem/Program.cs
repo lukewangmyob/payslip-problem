@@ -1,5 +1,4 @@
-﻿using System;
-using payslip_problem_luke.util;
+﻿using payslip_problem_luke.util;
 using PaySlipProblem.service;
 
 namespace PaySlipProblem
@@ -15,9 +14,9 @@ namespace PaySlipProblem
             var employeeDetails = employeeDetailsReader.Read();
             var payslip = PaySlipGenerator.Generate(employeeDetails);
             
-            consoleUtils.Write("Your payslip has been generated:");
-            
-            consoleUtils.Write("Thank you for using MYOB!");
+            consoleUtils.Write("\nYour payslip has been generated:\n");
+            consoleUtils.Write(payslip.output());
+            consoleUtils.Write("\nThank you for using MYOB!");
         }
     }
 }
