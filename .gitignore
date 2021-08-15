@@ -1,0 +1,6 @@
+.git
+.idea
+src/PaySlipProblem/bin
+src/PaySlipProblem/obj
+test/PaySlipProblem.Tests/obj
+test/PaySlipProblem.Tests/bin
