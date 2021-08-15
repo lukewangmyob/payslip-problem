@@ -18,15 +18,20 @@ namespace PaySlipProblem.service
 
         public string ReadString(string fieldName)
         {
-            return (string) Read("string", fieldName);
+            return (string) GenericRead("string", fieldName);
         }
 
         public int ReadInt(string fieldName)
         {
-            return (int) Read("int", fieldName);
+            return (int) GenericRead("int", fieldName);
+        }
+        
+        public double ReadDouble(string fieldName)
+        {
+            return (double) GenericRead("double", fieldName);
         }
 
-        private object Read(string type, string fieldName) {
+        private object GenericRead(string type, string fieldName) {
             while (true) {
                 _consoleUtils.Write($"{UserInputPrefix} {fieldName}");
                 var userInput = _consoleUtils.Read();
@@ -38,6 +43,8 @@ namespace PaySlipProblem.service
                     switch (type) {
                         case "int":
                             return int.Parse(userInput);
+                        case "double":
+                            return double.Parse(userInput);
                         case "string":
                             return parseString(userInput);
                     }
@@ -56,6 +63,7 @@ namespace PaySlipProblem.service
 
             return userInput;
         }
+
     }
     
     public class QuitApplicationException: Exception

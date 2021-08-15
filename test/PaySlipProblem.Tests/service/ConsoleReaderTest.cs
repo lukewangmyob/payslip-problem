@@ -89,5 +89,37 @@ namespace PaySlipProblem.Tests.service
             // then
             Assert.Equal(50000, value);
         }
+
+        [Fact]
+        public void ReadDoubleShouldThrowExceptionWhenUserTryToQuit()
+        {
+            // given
+            _consoleUtils.SetupSequence(c => c.Read())
+                .Returns("  ")
+                .Returns("quit");
+            
+            // then
+            Assert.Throws<QuitApplicationException>(
+                // when
+                () => _subject.ReadDouble("super rate")
+            );
+        }
+
+        [Fact]
+        public void ReadDoubleShouldKeepAskingUserIfInputIsNotInteger()
+        {
+            // given
+            _consoleUtils.SetupSequence(c => c.Read())
+                .Returns("  ")
+                .Returns("")
+                .Returns("James")
+                .Returns("12.5");
+            
+            // when
+            var value = _subject.ReadDouble("super rate");
+            
+            // then
+            Assert.Equal(12.5, value);
+        }
     }
 }
