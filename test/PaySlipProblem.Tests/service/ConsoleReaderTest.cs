@@ -1,4 +1,3 @@
-using System.IO;
 using Moq;
 using payslip_problem_luke.util;
 using PaySlipProblem.service;
@@ -18,31 +17,46 @@ namespace PaySlipProblem.Tests.service
         }
 
         [Fact]
-        public void ShouldReadStringValueCorrectly()
+        public void ReadStringShouldReadStringValueCorrectly()
         {
             // given
             _consoleUtils.Setup(c => c.Read()).Returns("James");
-            const string expectedValue = "James";
             
             // when
             var value = _subject.ReadString();
             
             // then
-            Assert.Equal(expectedValue, value);
+            Assert.Equal("James", value);
         }
         
         [Fact]
-        public void ShouldThrowExceptionIfStringIsBlank()
+        public void ReadStringShouldKeepAskingUserIfStringIsBlankOrEmpty()
         {
             // given
-            _consoleUtils.Setup(c => c.Read()).Returns("  ");
+            _consoleUtils.SetupSequence(c => c.Read())
+                .Returns("  ")
+                .Returns("")
+                .Returns("James");
+            
+            // when
+            var value = _subject.ReadString();
             
             // then
-            Assert.Throws<InvalidDataException>(
+            Assert.Equal("James", value);
+        }
+
+        [Fact]
+        public void ReadStringShouldThrowExceptionWhenUserTryToQuite()
+        {
+            // given
+            _consoleUtils.Setup(c => c.Read()).Returns("quit");
+            const string expectedValue = "James";
+            
+            // then
+            Assert.Throws<QuitApplicationException>(
                 // when
                 () => _subject.ReadString()
             );
         }
     }
-
 }
