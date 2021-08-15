@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using payslip_problem_luke.util;
 
 namespace PaySlipProblem.service
@@ -7,27 +6,32 @@ namespace PaySlipProblem.service
     public class ConsoleReader
     {
         private readonly ConsoleUtils _consoleUtils;
-        private const string QUIT_FLAG = "quit";
+        private const string QuitFlag = "quit";
+        private const string UserInputPrefix = "Please input your";
+        private const string InvalidInputErrorMessage = "Please enter valid input";
+        
         public ConsoleReader(ConsoleUtils consoleUtils)
         {
             _consoleUtils = consoleUtils;
         }
 
-        public string ReadString()
+        public string ReadString(string fieldName)
         {
             var isValid = false;
             var userInput = "";
             
             while (!isValid)
             {
+                _consoleUtils.Write($"{UserInputPrefix} {fieldName}");
                 userInput = _consoleUtils.Read();
-                if (userInput == QUIT_FLAG)
+                if (userInput == QuitFlag)
                 {
-                    throw new QuitApplicationException("User choose to quit");
+                    throw new QuitApplicationException("User chose to quit");
                 }
             
                 if (!string.IsNullOrWhiteSpace(userInput))
                 {
+                    _consoleUtils.Write(InvalidInputErrorMessage);
                     isValid = true;
                 }
             }

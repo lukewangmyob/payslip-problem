@@ -23,7 +23,7 @@ namespace PaySlipProblem.Tests.service
             _consoleUtils.Setup(c => c.Read()).Returns("James");
             
             // when
-            var value = _subject.ReadString();
+            var value = _subject.ReadString("name");
             
             // then
             Assert.Equal("James", value);
@@ -39,7 +39,7 @@ namespace PaySlipProblem.Tests.service
                 .Returns("James");
             
             // when
-            var value = _subject.ReadString();
+            var value = _subject.ReadString("name");
             
             // then
             Assert.Equal("James", value);
@@ -55,7 +55,7 @@ namespace PaySlipProblem.Tests.service
             // then
             Assert.Throws<QuitApplicationException>(
                 // when
-                () => _subject.ReadString()
+                () => _subject.ReadString("name")
             );
         }
     }
