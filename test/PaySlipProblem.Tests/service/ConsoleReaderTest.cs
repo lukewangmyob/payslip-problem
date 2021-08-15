@@ -1,3 +1,4 @@
+using System.IO;
 using Moq;
 using payslip_problem_luke.util;
 using PaySlipProblem.service;
@@ -29,5 +30,19 @@ namespace PaySlipProblem.Tests.service
             // then
             Assert.Equal(expectedValue, value);
         }
+        
+        [Fact]
+        public void ShouldThrowExceptionIfStringIsBlank()
+        {
+            // given
+            _consoleUtils.Setup(c => c.Read()).Returns("  ");
+            
+            // then
+            Assert.Throws<InvalidDataException>(
+                // when
+                () => _subject.ReadString()
+            );
+        }
     }
+
 }

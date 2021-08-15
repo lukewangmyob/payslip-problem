@@ -1,21 +1,27 @@
-using payslip_problem_luke.model;
+using System;
+using System.IO;
 using payslip_problem_luke.util;
 
-namespace payslip_problem_luke.service
+namespace PaySlipProblem.service
 {
-    public class EmployeeDetailsReader
+    public class ConsoleReader
     {
         private readonly ConsoleUtils _consoleUtils;
-
-        public EmployeeDetailsReader(ConsoleUtils consoleUtils)
+        public ConsoleReader(ConsoleUtils consoleUtils)
         {
             _consoleUtils = consoleUtils;
         }
 
-        public EmployeeDetails Read()
+        public string ReadString()
         {
-            var firstName = _consoleUtils.ReadString();
-            return null;
+            var value = _consoleUtils.Read();
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new InvalidDataException();
+            }
+            
+            return _consoleUtils.Read();
         }
     }
+    
 }
