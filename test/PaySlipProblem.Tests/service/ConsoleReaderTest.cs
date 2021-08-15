@@ -61,37 +61,6 @@ namespace PaySlipProblem.Tests.service
         }
 
         [Fact]
-        public void ReadIntShouldThrowExceptionWhenUserTryToQuit()
-        {
-            // given
-            _consoleUtils.Setup(c => c.Read()).Returns("quit");
-            
-            // then
-            Assert.Throws<QuitApplicationException>(
-                // when
-                () => _subject.ReadInt("name")
-            );
-        }
-
-        [Fact]
-        public void ReadIntShouldKeepAskingUserIfInputIsNotValid()
-        {
-            // given
-            _consoleUtils.SetupSequence(c => c.Read())
-                .Returns("  ")
-                .Returns("")
-                .Returns("James")
-                .Returns("12.5")
-                .Returns("50000");
-            
-            // when
-            var value = _subject.ReadInt("annualSalary");
-            
-            // then
-            Assert.Equal(50000, value);
-        }
-
-        [Fact]
         public void ReadDoubleShouldThrowExceptionWhenUserTryToQuit()
         {
             // given

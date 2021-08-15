@@ -16,7 +16,7 @@ namespace PaySlipProblem.service
             return new EmployeeDetails(
                 _consoleReader.ReadString("name"),
                 _consoleReader.ReadString("surname"),
-                _consoleReader.ReadInt("annual salary"),
+                _consoleReader.ReadDouble("annual salary"),
                 _consoleReader.ReadDouble("super rate"),
                 _consoleReader.ReadDate("start date"),
                 _consoleReader.ReadDate("end date")
