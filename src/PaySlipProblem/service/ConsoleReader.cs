@@ -4,7 +4,7 @@ using payslip_problem_luke.util;
 
 namespace PaySlipProblem.service
 {
-    public class ConsoleReader
+    public class ConsoleReader: IConsoleReader
     {
         private readonly ConsoleUtils _consoleUtils;
         private const string QuitFlag = "quit";
@@ -70,13 +70,8 @@ namespace PaySlipProblem.service
 
             return userInput;
         }
-        
-        private object parseDate(string userInput)
-        {
-            throw new NotImplementedException();
-        }
     }
-    
+
     public class QuitApplicationException: Exception
     {
         public QuitApplicationException(string message)

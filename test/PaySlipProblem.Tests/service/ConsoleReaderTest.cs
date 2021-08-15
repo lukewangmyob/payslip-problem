@@ -1,3 +1,4 @@
+using System;
 using Moq;
 using payslip_problem_luke.util;
 using PaySlipProblem.service;
@@ -73,7 +74,7 @@ namespace PaySlipProblem.Tests.service
         }
 
         [Fact]
-        public void ReadIntShouldKeepAskingUserIfInputIsNotInteger()
+        public void ReadIntShouldKeepAskingUserIfInputIsNotValid()
         {
             // given
             _consoleUtils.SetupSequence(c => c.Read())
@@ -106,7 +107,7 @@ namespace PaySlipProblem.Tests.service
         }
 
         [Fact]
-        public void ReadDoubleShouldKeepAskingUserIfInputIsNotInteger()
+        public void ReadDoubleShouldKeepAskingUserIfInputIsNotValid()
         {
             // given
             _consoleUtils.SetupSequence(c => c.Read())
@@ -120,6 +121,38 @@ namespace PaySlipProblem.Tests.service
             
             // then
             Assert.Equal(12.5, value);
+        }
+
+        [Fact]
+        public void ReadDateShouldThrowExceptionWhenUserTryToQuit()
+        {
+            // given
+            _consoleUtils.SetupSequence(c => c.Read())
+                .Returns("  ")
+                .Returns("quit");
+            
+            // then
+            Assert.Throws<QuitApplicationException>(
+                // when
+                () => _subject.ReadDate("start date")
+            );
+        }
+
+        [Fact]
+        public void ReadDateShouldKeepAskingUserIfInputIsNotInteger()
+        {
+            // given
+            _consoleUtils.SetupSequence(c => c.Read())
+                .Returns("  ")
+                .Returns("")
+                .Returns("James")
+                .Returns("1 March");
+            
+            // when
+            var value = _subject.ReadDate("super rate");
+            
+            // then
+            Assert.Equal(new DateTime(2001, 3,1), value);
         }
     }
 }

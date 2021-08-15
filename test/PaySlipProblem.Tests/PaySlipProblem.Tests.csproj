@@ -24,4 +24,8 @@
     <ProjectReference Include="..\..\src\PaySlipProblem\PaySlipProblem.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="util" />
+  </ItemGroup>
+
 </Project>
