@@ -31,6 +31,11 @@ namespace PaySlipProblem.service
             return (double) GenericRead("double", fieldName);
         }
 
+        public DateTime ReadDate(string fieldName)
+        {
+            return (DateTime) GenericRead("date", fieldName);
+        }
+
         private object GenericRead(string type, string fieldName) {
             while (true) {
                 _consoleUtils.Write($"{UserInputPrefix} {fieldName}");
@@ -47,6 +52,8 @@ namespace PaySlipProblem.service
                             return double.Parse(userInput);
                         case "string":
                             return parseString(userInput);
+                        case "date":
+                            return DateTime.Parse(userInput);
                     }
                 } catch (Exception e) {
                     _consoleUtils.Write($"{InvalidInputErrorMessage}, error: {e.Message}");
@@ -63,7 +70,11 @@ namespace PaySlipProblem.service
 
             return userInput;
         }
-
+        
+        private object parseDate(string userInput)
+        {
+            throw new NotImplementedException();
+        }
     }
     
     public class QuitApplicationException: Exception
