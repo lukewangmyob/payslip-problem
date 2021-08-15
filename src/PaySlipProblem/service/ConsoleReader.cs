@@ -51,7 +51,7 @@ namespace PaySlipProblem.service
                         case "double":
                             return double.Parse(userInput);
                         case "string":
-                            return parseString(userInput);
+                            return ParseString(userInput);
                         case "date":
                             return DateTime.Parse(userInput);
                     }
@@ -61,7 +61,7 @@ namespace PaySlipProblem.service
             }
         }
 
-        private string parseString(string userInput)
+        private string ParseString(string userInput)
         {
             if (string.IsNullOrWhiteSpace(userInput))
             {

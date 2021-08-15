@@ -18,6 +18,7 @@ namespace PaySlipProblem.Tests.service
         [Fact]
         public void ShouldParseConsoleInputToCorrectEmployeeDetails()
         {
+            // given
             var consoleReader = new Mock<IConsoleReader>();
             var employeeDetailsReader = new EmployeeDetailsReader(consoleReader.Object);
             

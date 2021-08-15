@@ -6,7 +6,6 @@ namespace PaySlipProblem.Tests.model
 {
     public class PaySlipTest
     {
-        
         private const string Name = "John Doe";
         private const int GrossIncome = 5004;
         private const int IncomeTax = 922;
