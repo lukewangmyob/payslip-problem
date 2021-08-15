@@ -26,37 +26,35 @@ namespace PaySlipProblem.service
             return (int) Read("int", fieldName);
         }
 
-        private object Read(string type, string fieldName)
-        {
-            while (true)
-            {
+        private object Read(string type, string fieldName) {
+            while (true) {
                 _consoleUtils.Write($"{UserInputPrefix} {fieldName}");
                 var userInput = _consoleUtils.Read();
-                
-                if (userInput == QuitFlag)
-                {
+                if (userInput == QuitFlag) {
                     throw new QuitApplicationException("User chose to quit");
                 }
 
-                try
-                {
-                    switch (type)
-                    {
+                try {
+                    switch (type) {
                         case "int":
-                        {
                             return int.Parse(userInput);
-                        }
-                        case "string" when string.IsNullOrWhiteSpace(userInput):
-                            throw new InvalidDataException();
                         case "string":
-                            return userInput;
+                            return parseString(userInput);
                     }
-                }
-                catch (Exception e)
-                {
-                    _consoleUtils.Write(InvalidInputErrorMessage);
+                } catch (Exception e) {
+                    _consoleUtils.Write($"{InvalidInputErrorMessage}, error: {e.Message}");
                 }
             }
+        }
+
+        private string parseString(string userInput)
+        {
+            if (string.IsNullOrWhiteSpace(userInput))
+            {
+                throw new InvalidDataException("String can not be blank");
+            }
+
+            return userInput;
         }
     }
     
